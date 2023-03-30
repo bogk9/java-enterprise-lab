@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login page</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:message for="error" />
+                <h:outputLabel for="usernameField" value="#{AppMessages['label.user']}"/>
+                <h:inputText required="true" validatorMessage="#{AppMessages['validation.user']}" id="usernameField" value="#{loginBean.username}" />
+                <h:message for="usernameField"></h:message>
+                
+                <h:outputLabel for="passwordField" value="#{AppMessages['label.password']}"/>
+                <h:inputSecret required="true" validatorMessage="#{AppMessages['validation.password']}" id="passwordField" value="#{loginBean.password}">
+                    <f:validateLength minimum="4" maximum="6"/>
+                </h:inputSecret>
+                <h:message for="passwordField"></h:message>
+                
+                <h:panelGroup/>
+                <h:commandButton id="loginButton" disabled="true" binding="#{loginBean.loginButton}" value="#{AppMessages['label.login']}" action="#{loginBean.login()}" />
+            </h:panelGrid>
+            <h:selectBooleanCheckbox id="acceptCheckBox" binding="#{loginBean.acceptCheckbox}" immediate="true" valueChangeListener="#{loginBean.activateButton}" onchange="submit()">
+            </h:selectBooleanCheckbox>
+            <h:outputText value="I accept the terms of service"/>
+        </h:form>
+    </h:body>
+</html>
